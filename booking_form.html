@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include '_navbar.html' %}
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .room-image {
+            max-height: 200px;
+            margin-bottom: 10px;
+        }
+
+        .room-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px; /* Space between room sections */
+        }
+
+        .room-info {
+            margin-left: 20px; /* Space between image and form */
+        }
+    </style>
+    <script>
+        function showRoomDetails() {
+            const roomType = document.getElementById("roomType").value;
+            const rooms = ["singleRoom", "doubleRoom", "twinRoom", "kingRoom"];
+            rooms.forEach(room => {
+                document.getElementById(room).style.display = "none"; // Hide all room details
+            });
+            if (roomType) {
+                document.getElementById(roomType).style.display = "block"; // Show selected room type
+            }
+            updatePrice(); // Update price when room type changes
+        }
+
+        function isPeakSeason(date) {
+            const peakSeasonStart = new Date(date.getFullYear(), 11, 15); // December 15
+            const peakSeasonEnd = new Date(date.getFullYear(), 11, 31); // December 31
+            return date >= peakSeasonStart && date <= peakSeasonEnd;
+        }
+
+        function getPricePerNight(roomType, date) {
+            const day = date.getDay();
+            const isWeekend = (day === 0 || day === 6); // Sunday or Saturday
+            const isPeak = isPeakSeason(date);
+
+            switch (roomType) {
+                case 'singleRoom':
+                    return isPeak ? 1480 : (isWeekend ? 1280 : 1080);
+                case 'doubleRoom':
+                    return isPeak ? 1580 : (isWeekend ? 1380 : 1180);
+                case 'twinRoom':
+                    return isPeak ? 1680 : (isWeekend ? 1480 : 1280);
+                case 'kingRoom':
+                    return isPeak ? 1780 : (isWeekend ? 1580 : 1380);
+                default:
+                    return 0; // Fallback if no room type matches
+            }
+        }
+
+        function updatePrice() {
+            const roomType = document.getElementById("roomType").value;
+            const checkInDate = new Date(document.getElementById("checkInDate").value);
+            const checkOutDate = new Date(document.getElementById("checkOutDate").value);
+
+            if (isNaN(checkInDate) || isNaN(checkOutDate) || checkInDate >= checkOutDate) {
+                document.getElementById("totalPrice").value = "0"; // Reset total if dates are invalid
+                return;
+            }
+
+            const nightCount = Math.max((checkOutDate - checkInDate) / (1000 * 60 * 60 * 24), 0); // days between check-in and check-out
+            let totalPrice = 0;
+            const numberOfRooms = parseInt(document.getElementById(roomType + 'Count').value) || 1;
+
+            for (let night = 0; night < nightCount; night++) {
+                const currentNight = new Date(checkInDate);
+                currentNight.setDate(currentNight.getDate() + night);
+
+                const pricePerNight = getPricePerNight(roomType, currentNight);
+                totalPrice += pricePerNight * numberOfRooms; // Accumulate total price
+            }
+
+            document.getElementById("totalPrice").value = totalPrice; // Update total price
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h2>Book Your Room</h2>
+        <form id="bookingForm" method="POST" action=""> <!-- Change the action to your booking endpoint/page -->
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="roomType">Room Type</label>
+                <select id="roomType" class="form-control" name="roomType" onchange="showRoomDetails()">
+                    <option value="">Select Room Type</option>
+                    <option value="singleRoom">Standard Single Room (Weekday: HK$1080 / Weekend: HK$1280 / Peak Season: HK$1480)</option>
+                    <option value="doubleRoom">Standard Double Room (Weekday: HK$1180 / Weekend: HK$1380 / Peak Season: HK$1580)</option>
+                    <option value="twinRoom">Superior Twin Room (Weekday: HK$1280 / Weekend: HK$1480 / Peak Season: HK$1680)</option>
+                    <option value="kingRoom">Superior King Room (Weekday: HK$1380 / Weekend: HK$1580 / Peak Season: HK$1780)</option>
+                </select>
+            </div>
+
+            <div id="roomImages" class="mb-4">
+                <div id="singleRoom" style="display:none;">
+                    <img class="room-image" src="{% static 'admin/img/single1.jpeg' %}" alt="Standard Single Room" />
+                    <div class="room-selection">
+                        <label>Number of Rooms:</label>
+                        <input type="number" min="1" value="1" id="singleRoomCount" onchange="updatePrice();" />
+                    </div>
+                </div>
+                <div id="doubleRoom" style="display:none;">
+                    <img class="room-image" src="{% static 'admin/img/double1.jpeg' %}" alt="Standard Double Room" />
+                    <img class="room-image" src="{% static 'admin/img/double2.jpeg' %}" alt="Standard Double Room" />
+                    <div class="room-selection">
+                        <label>Number of Rooms:</label>
+                        <input type="number" min="1" value="1" id="doubleRoomCount" onchange="updatePrice();" />
+                    </div>
+                </div>
+                <div id="twinRoom" style="display:none;">
+                    <img class="room-image" src="{% static 'admin/img/supertwin1.jpeg' %}" alt="Superior Twin Room" />
+                    {% comment %} <img class="room-image" src="{% static 'admin/img/supertwin2.jpeg' %}" alt="Superior Twin Room" /> {% endcomment %}
+                    <div class="room-selection">
+                        <label>Number of Rooms:</label>
+                        <input type="number" min="1" value="1" id="twinRoomCount" onchange="updatePrice();" />
+                    </div>
+                </div>
+                <div id="kingRoom" style="display:none;">
+                    {% comment %} <img class="room-image" src="{% static 'admin/img/superking1.jpeg' %}" alt="Superior King Room" /> {% endcomment %}
+                    <img class="room-image" src="{% static 'admin/img/superking2.jpeg' %}" alt="Superior King Room" />
+                    <div class="room-selection">
+                        <label>Number of Rooms:</label>
+                        <input type="number" min="1" value="1" id="kingRoomCount" onchange="updatePrice();" />
+                    </div>
+                </div>
+            </div>
+        
+            <div class="form-group">
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" class="form-control" name="fullName" required onchange="updatePrice();">
+            </div>
+            
+            <div class="form-group">
+                <label for="phoneNo">Phone No.:<label>
+                <input type="number" id="phoneNo" class="form-control" name="phoneNo" required onchange="updatePrice();">
+            </div>
+
+            <div class="form-group">
+                <label for="roomType">Credit Card Type</label>
+                <select id="creditCardType" class="form-control" name="creditCard" onchange="showCardDetails()">
+                    <option value="">Select Credit Card Type</option>
+                    <option value="visa">Visa</option>
+                    <option value="master">Master</option>
+                    <option value="unionPay">Union Pay</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="creditCard">Credit Card No. :</label>
+                <input type="creditCard" id="creditCard" class="form-control" name="creditCard" required onchange="updatePrice();">
+            </div>
+
+            <div class="form-group">
+                <label for="validThru">Valid Thru (MM/YY):</label>
+                <input type="date" id="validThru" class="form-control" name="validThru" required onchange="updatePrice();">
+            </div>
+
+            <div class="form-group">
+                <label for="cvc">CVC:</label>
+                <input type="integer" id="cvc" class="form-control" name="cvc" required onchange="updatePrice();">
+            </div>
+
+            <div class="form-group">
+                <label for="checkInDate">Check-in Date</label>
+                <input type="date" id="checkInDate" class="form-control" name="checkIn" required onchange="updatePrice();">
+            </div>
+            <div class="form-group">
+                <label for="checkOutDate">Check-out Date</label>
+                <input type="date" id="checkOutDate" class="form-control" name="checkOut" required onchange="updatePrice();">
+            </div>
+
+            <div class="form-group">
+                <label for="totalPrice">Total Price (HK$):</label>
+                <input type="text" id="totalPrice" class="form-control" name="totalPrice" value="0" readonly>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Proceed to Payment</button>
+            <button type="button" class="btn btn-secondary" onclick="clearForm()">Clear</button>
+        </form>
+    </div>
+
+    <script>
+        function clearForm() {
+            document.getElementById("bookingForm").reset();
+            document.getElementById("totalPrice").value = "0";
+            const roomTypes = ["singleRoom", "doubleRoom", "twinRoom", "kingRoom"];
+            roomTypes.forEach(room => {
+                document.getElementById(room).style.display = "none";  // hide all room details after clearing
+            });
+        }
+    </script>
+</body>
+
+</html>
+

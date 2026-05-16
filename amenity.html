@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <div class="logo">
+            <img src={% static 'admin/img/heynien_logo.jpg' %} alt="Logo" />
+        </div>
+        <div class="text-primary">
+            <h2 class="text-center">富安浸信會禧年堂</h2>
+            {% comment %} <a class="navbar display-flex"> href="{% url "index" %}">
+                <img src={% static 'admin/img/hotel_logo.png' %} class="logo" alt="" />
+            </a> {% endcomment %}
+        </div>
+        
+        {% comment %} </div>
+        <a class="navbar-brand" href="{% url 'home' %}">富安浸信會禧年堂</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button> {% endcomment %}
+        <style>
+            .navbar {
+                margin-top: 2px; /* Adjust margin as needed */
+                margin-bottom: 50px; /* Adjust margin as needed */
+                display: flex;
+                justify-content: space-between; /* To place logo on the right */
+                align-items: center; /* Vertically center items */
+                padding: 10px 20px; /* Padding for the navigation bar */
+                background-color: #ffffff; /* Background color of navbar */
+                margin-left: 0px;
+                margin-right: 20px;
+            }
+    
+            .logo img {
+                display: left;
+                height: 70px; /* Adjust height as needed */
+                width: 70px; /* Maintain aspect ratio */
+                margin-left: 5px; /* Adjust margin as needed */
+                margin-right: 15px; /* Adjust margin as needed */
+            }
+    
+            .img {
+                width: 10%; /* Responsive image */
+                height: 10%; /* Maintain aspect ratio */
+            }
+    
+            a {
+                font-size: 19px; /* Font size for links */
+                display: flex;
+                margin-left: 2px;
+                margin-right: 10px;
+                color: green;
+            }
+    
+            .navbar-custom {
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: shadow for the navbar */
+            }
+            h2 {
+                color: #007bff; /* Adjust color */
+                margin-top: 0px; /* Margin for spacing */
+                margin-bottom: 100px; /* Margin for spacing */
+                padding: 10px; /* Padding for the button */
+                margin-left: 2px; /* Margin for spacing */
+                margin-right: 200px; /* Margin for spacing */
+                text-align: left; /* Center the text */
+                font-size: 30px; /* Font size */
+            }
+        </style>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item text-primary">
+                    <a class="nav-link" href="{% url 'home' %}">首頁</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'facility' %}">喜樂川</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'happyvally' %}">喜樂川 - 當值表</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'amenity' %}">聖經課程</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'about' %}">關於我們</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}">補習登記</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">登入</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">登出</a>
+                </li>
+            </ul>
+            <a href="{% url 'paytutorials' %}" class="btn btn-success ml-3">留位補習</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Optional JavaScript; choose one of the two! -->
+<script src="https://code.jquery.com/jquery-3.5.2.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</html>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>富安浸信會禧年堂 - 課程簡介</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .amenity-image {
+            max-height: 20px; /* Limit the height of images */
+            width: 20px; /* Maintain aspect ratio */
+            display: none; /* Initially hide all images */
+            margin-top: 20px; /* Space above images */
+        }
+
+        .return-button {
+            margin-top: 10px; /* Space above the return button */
+        }
+    </style>
+    
+    <script>
+        function showAmenity() {
+            const selectedAmenity = document.getElementById("amenitySelect").value;
+            const amenities = ["smartTV", "fridge", "miniBar", "airPurifier", "hairDryer", "miniTable", "indoorPhone", "slippers", "hangers"];
+
+            // Hide all images
+            amenities.forEach(amenity => {
+                document.getElementById(amenity + "Image").style.display = "none";
+            });
+
+            // Show the selected amenity image
+            if (selectedAmenity) {
+                document.getElementById(selectedAmenity + "Image").style.display = "initial";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h2>選擇課程:</h2>
+        <h3>2025信徒培育課程</h3>
+        
+        <div class="form-group">
+            <label for="amenitySelect">請選擇喜歡的課程:</label>
+            <select id="amenitySelect" class="form-control" onchange="showAmenity()">
+                <option value="">課程包括 -</option>
+                <option value="smartTV">{禱告的真諦｝(長者)</option>
+                <option value="fridge">{關懷及探訪訓練}</option>
+                <option value="miniBar">{創世記}</option>
+                <option value="airPurifier"></option>
+                <option value="hairDryer"></option>
+                <option value="miniTable"></option>
+                <option value="indoorPhone"></option>
+                <option value="slippers"></option>
+                <option value="hangers"></option>
+            </select>
+        </div>
+
+        <!-- Amenity Images -->
+        <div id="smartTVImage" class="amenity-image">
+            <img src="{% static 'admin/img/smartTV.jpeg' %}" alt="" class="img-fluid"> 
+                <p> 日期 : 5月6、13、20、27日、6月3、10日 (逢星期二，共6堂)</p>
+                <p> 時閒 : 下午2：00 - 3：15</p>
+
+                <p> 地點 : 心靈祿洲</p> 
+                <p> 導師 : 蘇永耀傳道</p> 
+
+                <h3>課程簡介 :</h3>
+                <p> 本課程藉著教導聖經有關禱告的真理及例子 , 鼓勵學員更多以禱告倚靠神, 親身體會與耶穌聯合的狀況 。</p>
+            
+                <h3> 課程內容 :</h3>
+                <p> 第一課 : 聖經中的祈禱</p>
+                <p> 第二課 : 為甚麽要祈禱</p>
+                <p> 第三課 : 如何尋求神的旨意</p>
+                <p> 第四課 : 在禱告中分辨神的聲音</p>
+                <p> 第五課 : 耶穌的祈禱</p>
+                <p> 第六課 : 再思 {主禱文}</p>
+        </div>
+        <div id="fridgeImage" class="amenity-image">
+            <img src="{% static 'admin/img/take_care.jpeg' %}" alt="" class="img-fluid">
+            <p>日期 : 5 月 8 、 15 、 22 、 29 、 6 月 5 、 12 日 ( 逢星期四 , 共 6 堂 )</p>
+            <p>時閒 : 晚上 8:30 - 9:45</p>
+            <p>Zoom 會議 ID : 810 2894 9381  密碼 : 998496</p>
+            <p>導師: 蘇永耀傳道</p>
+
+            <h2>課程簡介</h2>
+            <h3>「 面對危疾重症的親友或弟兄姊妹不知道說甚才好 」</h3>
+            <h3>「 我不知道如何敏感其他人的需要 」</h3>
+            <h3>本課程的目的提升弟兄姊妹關心社區的意識，並了解及認識探訪的意義和行動，</h3>
+            <h3>並鼓勵其委身參與教會各項服事，裝備更多有心志服侍社區的信徙。</h3>
+
+            <h2>課程內容 :</h2>
+            <p>第一課 ： 關懷及探訪的聖經基礎</p>
+            <p>第二課 ： 關懷者的自白 ： 動機 、 目標 、 態度</p>
+            <p>第三課 ： 關懷與同行 ： 觀察 、 禱告 、 介入</p>
+            <p>第四課 ： 社區鬫懷 ： 家庭 、 社區 、 長者</p>
+            <p>第五課 ： 探訪順知及技巧</p>
+            <p>第六課 ： 醫院探訪與關壞 ： 病人家屬倩緒 、 生離死別</p>
+        </div>
+        <div id="miniBarImage" class="amenity-image">
+            <img src={% static 'admin/img/make_century.jpeg' %} alt="" class="img-fluid">
+            <h3>{創世記}</h3>
+            <p>日期 : 5 月 10 、 17 、 24 日 、 6 月 7 、 14 、 21 、 28 日 、 7 月 5 、 12 、19 日 </p>
+            <p>( 5 月 31 日 端午節暫停。逢星期六 ， 共 10 堂 )</p>
+            <p>時閒 : 下午 12:30 - 2:00</p>
+            <p>地點 : 心靈綠洲</p>
+            <p>導師 : 鄺美珩姊妹</p>
+
+            <h3>課程簡介 :</h3>
+            <p> 創世記從 「起初神創造天地」， 以「......約瑟的棺材  停放在埃</p>
+            <p> 及」為結句 : 以神創造生命為始 ， 以人的死亡為終的懸殊 ， 令人深思 。</p>
+            <p> 書卷講述神創造嶄物 ， 啟示了神 、 人 、 世界的關係 ， 神也啟示丁衪的屬性 ，</p>
+            <p> 始祖犯罪和人類的邪惡 。 神的審判等 。 然而 ， 神應許了另一個新創造 : 神藉著</p>
+            <p> 呼召選民亞伯拉罕 ， 開展拯救世人的歷史 。 聖經舊約新約内容的一致性 ， 都以創世記</p>
+            <p> 為前題 ， 創世記是整本聖經架構的基礎 。</p>
+
+
+
+            
+
+        </div>
+        <div id="airPurifierImage" class="amenity-image">
+            <img src={% static 'admin/img/air_purifier.jpeg' %} alt="Air Purifier" class="img-fluid">
+            <p>Breathe easy with our air purification system.</p>
+        </div>
+        <div id="hairDryerImage" class="amenity-image">
+            <img src={% static 'admin/img/hair_dryer.jpeg' %} alt="Hair Dryer" class="img-fluid">
+            <p>Stylish and convenient for your grooming needs.</p>
+        </div>
+        <div id="miniTableImage" class="amenity-image">
+            <p>Mini Table: No photo available.</p>
+        </div>
+        <div id="indoorPhoneImage" class="amenity-image">
+            <p>Indoor Phone: No photo available.</p>
+        </div>
+        <div id="slippersImage" class="amenity-image">
+            <p>Slippers: No photo available.</p>
+        </div>
+        <div id="hangersImage" class="amenity-image">
+            <p>Hangers: No photo available.</p>
+        </div>
+
+        <div class="return-button">
+            <a href="{% url 'amenity' %}" class="btn btn-primary">返回[選擇聖經課程]</a>
+        </div>
+    </div>
+</body>
+</html>

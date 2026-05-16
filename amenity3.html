@@ -1,0 +1,54 @@
+{% include '_navbar.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Selection</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { max-width: 1000px; margin: auto; padding: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>選擇課程</h1>
+        <form method="post">
+            {% csrf_token %}
+            <label for="course">請選擇一個課程:</label>
+            <select name="course" id="course">
+                <option value="prayer">禱告的真諦 (長者)</option>
+                <option value="visitation">關懷及探訪訓練</option>
+                <option value="genesis">創世記</option>
+            </select>
+            <button type="submit">提交</button>
+        </form>
+
+        {% if selected_course %}
+            <h2>課程內容 :</h2>
+            {% if selected_course == "prayer" %}
+                <p>日期 : 5月6、13、20、27日、6月3、10日 (逢星期二，共6堂)
+                   時閒 : 下午2：00 - 3：15
+   
+                   地點 : 心靈祿洲 
+                   導師 : 蘇永耀傳道 
+   
+                   課程簡介 : 本課程藉著教導聖經有關禱告的真理及例子 , 鼓勵學員更多以
+                             禱告倚靠神, 親身體會與耶穌聯合的狀況 。
+               
+                   課程內容 :
+                   第一課 : 聖經中的祈禱
+                   第二課 : 為甚麽要祈禱
+                   第三課 : 如何尋求神的旨意
+                   第四課 : 在禱告中分辨神的聲音
+                   第五課 : 耶穌的祈禱
+                   第六課 : 再思 {主禱文}</p>
+            {% elif selected_course == "visitation" %}
+                <p>關懷及探訪訓練：學習如何在社區中提供支持和關懷。</p>
+            {% elif selected_course == "genesis" %}
+                <p>創世記：深入了解創世記的故事和教訓。</p>
+            {% endif %}
+        {% endif %}
+    </div>
+</body>
+</html>

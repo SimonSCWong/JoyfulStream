@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>喜樂川設施和當值表</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- <style>
+        background {
+            color: powderblue;
+        }
+        .return-button {
+            margin-top: 20px; /* Space above the return button */
+        }
+
+        img {
+            max-height: 500px; /* Cap the height */
+            width: 50%; /* Full width of the parent */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 5px; /* Add rounded corners */
+            display: flex;
+            margin: 10px;
+            padding: 0;
+        }
+    </style> -->
+    <style>
+        background {
+            color: powderblue;
+        }
+        .facility-image {
+            display: none; /* Initially hide all images */
+            margin-top: 20px; /* Space above images */
+        }
+
+        .return-button {
+            margin-top: 20px; /* Space above the return button */
+        }
+
+        img {
+            max-height: 400px; /* Cap the height */
+            width: 60%; /* Full width of the parent */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 5px; /* Add rounded corners */
+        }
+    </style>
+    <script>
+        function showFacility() {
+            const selectedFacility = document.getElementById("facilitySelect").value;
+            // const facilities = ["engTutor", "matTutor", "chiTutor", "bookRoom", "lookupRoster"];
+            const facilities = ["infinityPool", "jacuzzi", "sauna", "spa", "gymRoom", "conferenceRoom", "restaurant", "pub"];
+
+
+            // Hide all images
+            facilities.forEach(facility => {
+                document.getElementById(facility + "Image").style.display = "none";
+            });
+
+            // Show the selected facility image
+            if (selectedFacility) {
+                document.getElementById(selectedFacility + "Image").style.display = "block";
+            }
+        }
+
+        function hideAllFacilities() {
+            const facilities = ["infinityPool", "jacuzzi", "sauna", "spa", "gymRoom", "conferenceRoom", "restaurant", "pub"];
+
+            // const facilities = ["engTutor", "matTutor", "chiTutor", "bookRoom", "lookupRoster"];
+            facilities.forEach(facility => {
+                document.getElementById(facility + "Image").style.display = "none";
+            });
+            document.getElementById("facilitySelect").value = ""; // Reset selection
+        }
+    </script>
+</head>
+
+<body> 
+    <div class="container mt-5">
+        <h2>富安浸信會禧年堂--喜樂川</h2>
+        
+        <div class="form-group">
+            <label for="facilitySelect">請選擇服務:</label>
+            <select id="facilitySelect" class="form-control" onchange="showFacility()">
+                <option value="">選擇設施</option>
+                <option value="infinityPool">補習英文</option>
+                <option value="jacuzzi">補習數學</option>
+                <option value="sauna">補習中文</option>
+                <option value="spa">租借場地</option>
+                <option value="gymRoom">楂看當值表</option>
+                <option value="conferenceRoom"></option>
+                <option value="restaurant"></option>
+                <option value="pub"></option>
+            </select>
+        </div>
+
+        <!-- Facility Images -->
+        <div id="infinityPoolImage" class="facility-image">
+            <img src={% static 'admin/img/engTutot1.jpeg' %} alt="English Tutorial 1" class="img-fluid">
+            <img src={% static 'admin/img/engTutor2.jpeg' %} alt="English Tutorial 2" class="img-fluid">
+            <p>請盡情享受補習英文的趣味。</p>
+            <div class="return-button">
+                <button class="btn btn-secondary" onclick="hideAllFacilities()">Return</button>
+            </div>
+        </div>
+        
+        <div id="jacuzziImage" class="facility-image">
+            <img src={% static 'admin/img/matTutor1.jpeg' %} alt="Math Tutorial" class="img-fluid">
+            <p>請盡情發掘對數學的夭份。</p>
+            <div class="return-button">
+                <button class="btn btn-secondary" onclick="hideAllFacilities()">Return</button>
+            </div>
+        </div>
+        
+        <div id="saunaImage" class="facility-image">
+            <p>請盡倩發揮對中文科之理誤。</p>
+            <img src={% static 'admin/img/chiTutor1.jpeg' %} alt="Chinese Tutorial 1" class="img-fluid">
+            <img src={% static 'admin/img/chiTutor2.jpeg' %} alt="Chinese Tutorial 2" class="img-fluid">
+                <button class="btn btn-secondary" onclick="hideAllFacilities()">Return</button>
+            </div>
+        </div>
+        
+        <div id="spaImage" class="facility-image">
+            <p>請用感覺去感受喜樂川的設施。</p>
+            <img src={% static 'admin/img/bookRoom1.jpeg' %} alt="book Room 1" class="img-fluid">
+            <img src={% static 'admin/img/bookRoom2.jpeg' %} alt="book Room 2" class="img-fluid">
+            <img src={% static 'admin/img/bookRoom3.jpeg' %} alt="book Room 3" class="img-fluid">
+            <div class="return-button">
+                <button class="btn btn-secondary" onclick="hideAllFacilities()">Return</button>
+            </div>
+        </div>
+
+        <div id="gymRoomImage" class="facility-image">
+            <p>請盡清享受當值的樂趣。</p>
+            <img src={% static 'admin/img/lookupRoster1.jpeg' %} alt="lookup Roster 1" class="img-fluid">
+            <img src={% static 'admin/img/lookupRoster2.jpeg' %} alt="lookup Roster 2" class="img-fluid">
+            <img src={% static 'admin/img/lookupRoster3.jpeg' %} alt="lookup Roster 3" class="img-fluid">
+            <div class="return-button">
+                <button class="btn btn-secondary" onclick="hideAllFacilities()">Return</button>
+            </div>
+        </div>
+
+        <div id="conferenceRoomImage" class="facility-image">
+            <p>Please enjoy our best facility conference room
+            <img src={% static 'admin/img/meet_room1.jpeg' %} alt="Conference Room 1" class="img-fluid">
+            <div class="return-button">
+                <button class="btn btn-secondary" onclick="hideAllFacilities()">Return</button>
+            </div>
+        </div>
+
+        <div id="restaurantImage" class="facility-image">
+            <p>Enjoy a best lunch in our RSY Hotel Restaurants</p>
+            <img src={% static 'admin/img/rest1.jpeg' %} alt="Rest 1" class="img-fluid">
+            <img src={% static 'admin/img/rest2.jpeg' %} alt="Rest 2" class="img-fluid">
+            <img src={% static 'admin/img/rest3.jpeg' %} alt="Rest 3" class="img-fluid">
+            <div class="return-button">
+                <button class="btn btn-secondary" onclick="hideAllFacilities()">Return</button>
+            </div>
+        </div>
+
+        <div id="pubImage" class="facility-image">
+            <p>Relax and enjoy in our RSY Hotel's Pub</p>
+            <img src={% static 'admin/img/pub1.jpeg' %} alt="Pub 1" class="img-fluid">
+            <div class="return-button">
+                <button class="btn btn-secondary" onclick="hideAllFacilities()">Return</button>
+            </div>
+        </div>
+    </div>
+{% include "_footer.html" %}
+</body>
+</html>

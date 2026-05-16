@@ -1,0 +1,46 @@
+{% load static %}
+{% include '_navbar.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% comment %} <title>{% block title %}RSY Hotel Booking{% endblock %}</title> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"> <!-- Load Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> <!-- Your custom CSS if any -->
+    {% comment %} {% load static %}  <!-- Load static files --> {% endcomment %}
+    
+    <style>
+        body {
+            background-image: url('{% static "admin/img/joyfulstream.jpg" %}'); /* Background image */
+            background-size: 70%;/* Cover the entire area */
+            background-position: center; /* Center the image */
+            background-attachment: fixed; /* Fixed background *er/
+            color: white; /* Font color to white */
+            margin: 0; /* Remove default margin */
+        }
+        .navbar, .topbar {
+            background-color: rgba(0, 0, 0, 0); /* Semi-transparent background */
+        }
+        .content {
+            max-width: 1200px; /* Set maximum width for main content */
+            margin: auto; /* Center content */
+            padding: 8px; /* Padding for content */
+        }
+    </style>
+</head>
+<body>
+    {% comment %} {% include '_topbar.html' %} {% endcomment %}
+    {% comment %} {% include '_navbar.html' %} {% endcomment %}
+
+    <div class="content">
+         {% block content %}
+         <!--Default Content Block -->
+         {% endblock %}
+    </div>
+
+    
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script> <!-- Load Bootstrap JS -->
+</body>
+</html>

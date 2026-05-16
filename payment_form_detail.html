@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h2>Payment Details</h2>
+        <p><strong>Room Type:</strong> {{ room_type }}</p>
+        <p><strong>Total Price:</strong> {{ total_price }}</p>
+
+        <form method="POST" action="/api/process_payment">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="cardNumber">Card Number</label>
+                <input type="text" class="form-control" id="cardNumber" name="cardNumber" required placeholder="Enter your card number">
+            </div>
+            <div class="form-group">
+                <label for="expirationDate">Expiration Date (MM/YY)</label>
+                <input type="text" class="form-control" id="expirationDate" name="expirationDate" required placeholder="MM/YY">
+            </div>
+            <div class="form-group">
+                <label for="cvv">CVV</label>
+                <input type="text" class="form-control" id="cvv" name="cvv" required placeholder="Enter CVV">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Payment</button>
+        </form>
+
+        <hr>
+        <p><a href="{{ url_for('booking_form') }}">Back to Booking</a></p>  <!-- Link to navigate back to booking form if needed -->
+    </div>
+</body>
+
+</html>
+        <script>
+            const roomImages = {
+                standard_single: [
+                    "static/admin/img/single1.jpeg",
+                ],
+                standard_double: [
+                    "static/admin/img/double1.jpeg",
+                    "static/admin/img/double2.jpeg"
+                ],
+            
+            superior_twin: [
+                "static/admin/img/supertwin1.jpeg",
+                "static/admin/img/supertwin2.jpeg"
+            ],
+            superior_king: [
+                "static/admin/img/superking1.jpeg",
+                "static/admin/img/superking3.jpeg"
+            ]
+        };
+        function showRoomImages() {
+            const roomType = document.getElementById("roomType").value;
+            const roomImageDisplay = document.getElementById("roomImageDisplay");
+            roomImageDisplay.innerHTML = ""; // Clear previous images
+
+            if (roomType && roomImages[roomType]) {
+                roomImages[roomType].forEach(image => {
+                    const imgElement = document.createElement("img");
+                    imgElement.src = image;
+                    imgElement.style.width = "200px"; // Set width for images
+                    imgElement.style.marginRight = "10px"; // Add some margin
+                    roomImageDisplay.appendChild(imgElement);
+                });
+            }
+        }
+        function returnToSelection() {
+            document.getElementById("bookingForm").reset();
+            document.getElementById("roomImageDisplay").innerHTML = "";
+        }
+        function returnToSelection() {
+            document.getElementById("bookingForm").reset();
+            document.getElementById("roomImageDisplay").innerHTML = "";
+        }
+        const roomImages = {
+            <script>
+                const roomImages = {
+                    standard_single: [
+                        "static/admin/img/single1.jpeg",
+                    ],
+                    standard_double: [
+                        "static/admin/img/double1.jpeg",
+                        "static/admin/img/double2.jpeg"
+                    ],
+                
+                superior_twin: [
+                    "static/admin/img/supertwin1.jpeg",
+                    "static/admin/img/supertwin2.jpeg"
+                ],
+                superior_king: [
+                    "static/admin/img/superking1.jpeg",
+                    "static/admin/img/superking3.jpeg"
+                ]
+            };
+        };
+
+        function showRoomImages() {
+            const roomType = document.getElementById("roomType").value;
+            const roomImageDisplay = document.getElementById("roomImageDisplay");
+            roomImageDisplay.innerHTML = ""; // Clear previous images
+
+            if (roomType && roomImages[roomType]) {
+                roomImages[roomType].forEach(image => {
+                    const imgElement = document.createElement("img");
+                    imgElement.src = image;
+                    imgElement.style.width = "200px"; // Set width for images
+                    imgElement.style.marginRight = "10px"; // Add some margin
+                    roomImageDisplay.appendChild(imgElement);
+                });
+            }
+        }
+
+        function returnToSelection() {
+            document.getElementById("bookingForm").reset();
+            document.getElementById("roomImageDisplay").innerHTML = "";
+        }
+    </script>

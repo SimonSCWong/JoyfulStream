@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <div class="logo">
+            <img src={% static 'admin/img/heynien_logo.jpg' %} alt="Logo" />
+        </div>
+        <div class="text-primary">
+            <h2 class="text-center">富安浸信會禧年堂</h2>
+            {% comment %} <a class="navbar display-flex"> href="{% url "index" %}">
+                <img src={% static 'admin/img/hotel_logo.png' %} class="logo" alt="" />
+            </a> {% endcomment %}
+        </div>
+        
+        {% comment %} </div>
+        <a class="navbar-brand" href="{% url 'home' %}">富安浸信會禧年堂</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button> {% endcomment %}
+        <style>
+            .navbar {
+                margin-top: 2px; /* Adjust margin as needed */
+                margin-bottom: 50px; /* Adjust margin as needed */
+                display: flex;
+                justify-content: space-between; /* To place logo on the right */
+                align-items: center; /* Vertically center items */
+                padding: 10px 20px; /* Padding for the navigation bar */
+                background-color: #ffffff; /* Background color of navbar */
+                margin-left: 0px;
+                margin-right: 0px;
+            }
+    
+            li {
+                display: inline-block;
+                margin-right: 20px; /* Adjust spacing between links */
+                text-color: lightblue;
+            }
+
+            /* Example to make nav text larger */
+            .navbar-nav .nav-link {
+            font-size: 25px; /* Increase this value as needed */
+            font-weight: bold; /* Optional: makes text thicker */
+          }
+
+
+            .logo img {
+                display: left;
+                height: 70px; /* Adjust height as needed */
+                width: 70px; /* Maintain aspect ratio */
+                margin-left: 5px; /* Adjust margin as needed */
+                margin-right: 1500px; /* Adjust margin as needed */
+            }
+    
+            .img {
+                width: 10%; /* Responsive image */
+                height: 10%; /* Maintain aspect ratio */
+            }
+    
+            a {
+                font-size: 19px; /* Font size for links */
+                display: flex;
+                margin-left: 2px;
+                margin-right: 10px;
+                color: green;
+            }
+
+    
+            .navbar-custom {
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: shadow for the navbar */
+            }
+
+            h2 {
+                color: #007bff; /* Adjust color */
+                margin-top: 0px; /* Margin for spacing */
+                margin-bottom: 100px; /* Margin for spacing */
+                padding: 10px; /* Padding for the button */
+                margin-left: 2px; /* Margin for spacing */
+                margin-right: 200px; /* Margin for spacing */
+                text-align: left; /* Center the text */
+                font-size: 30px; /* Font size */
+            }
+        </style>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item text-primary" style="color: lightblue">
+                    <a class="nav-link font-size=30px" style="color: red" href="{% url 'home' %}">首頁</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: blue" href="{% url 'facility' %}">喜樂川</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: blue" href="{% url 'happyvally' %}">喜樂川 - 當值表</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: blue" href="{% url 'amenity' %}">聖經課程</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: blue" href="{% url 'about' %}">關於我們</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: red" href="{% url 'register' %}">補習登記</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: violet" href="{% url 'login' %}">登入</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: violet" href="{% url 'logout' %}">登出</a>
+                </li>
+            </ul>
+            <a href="{% url 'paytutorials' %}" class="btn btn-success ml-3">留位補習</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Optional JavaScript; choose one of the two! -->
+<script src="https://code.jquery.com/jquery-3.5.2.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <div class="logo">
+            <img src={% static 'admin/img/heynien_logo.jpg' %} alt="Logo" />
+        </div>
+        <div class="text-primary">
+            <h2 class="text-center">富安浸信會禧年堂</h2>
+        </div>
+        
+        <style>
+            .navbar {
+                margin-top: 2px; /* Adjust margin as needed */
+                margin-bottom: 00px; /* Adjust margin as needed */
+                display: flex;
+                justify-content: space-between; /* To place logo on the right */
+                align-items: center; /* Vertically center items */
+                padding: 10px 20px; /* Padding for the navigation bar */
+                background-color: #ffffff; /* Background color of navbar */
+                margin-left: 5px;
+                margin-right: 5px;
+            }
+    
+            .logo img {
+                display: left;
+                height: 70px; /* Adjust height as needed */
+                width: 70px; /* Maintain aspect ratio */
+                margin-left: 5px; /* Adjust margin as needed */
+                margin-right: 500px; /* Adjust margin as needed */
+            }
+    
+            .img {
+                width: 10%; /* Responsive image */
+                height: 10%; /* Maintain aspect ratio */
+            }
+    
+            a {
+            font-size: 19px; /* Font size for links */
+            display: flex;
+            margin-left: 2px;
+            margin-right: 2px;
+            color: greenyellow;
+            }
+    
+            .navbar-custom {
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: shadow for the navbar */
+            }
+            h2 {
+                color: #007bff; /* Adjust color */
+                margin-top: 0px; /* Margin for spacing */
+                margin-bottom: 100px; /* Margin for spacing */
+                padding: 10px; /* Padding for the button */
+                margin-left: 2px; /* Margin for spacing */
+                margin-right: 100px; /* Margin for spacing */
+                text-align: left; /* Center the text */
+                font-size: 30px; /* Font size */
+            }
+        </style>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item text-primary">
+                    <a class="nav-link" href="{% url 'home' %}">首頁</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'facility' %}">喜樂川</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'happyvally' %}">楂看喜樂川 - 當值表</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'amenity' %}">聖經課程</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'about' %}">關於我們</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}">補習登記</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">登入</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">登出</a>
+                </li>
+            </ul>
+            <a href="{% url 'paytutorials' %}" class="btn btn-success ml-3">留位補習</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Optional JavaScript; choose one of the two! -->
+<script src="https://code.jquery.com/jquery-3.5.2.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <h1>喜樂川設施</h1>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .navbar {
+                margin-top: 2px; /* Adjust margin as needed */
+                margin-bottom: 100px; /* Adjust margin as needed */
+                display: flex;
+                justify-content: space-between; /* To place logo on the right */
+                align-items: center; /* Vertically center items */
+                padding: 10px 20px; /* Padding for the navigation bar */
+                background-color: #ffffff; /* Background color of navbar */
+                margin-left: 5px;
+                margin-right: 5px;
+            }
+        
+        .return-button {
+            margin-top: 20px; /* Space above the return button */
+        }
+
+        img {
+            max-height: 500px; /* Cap the height */
+            width: 50%; /* Full width of the parent */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 5px; /* Add rounded corners */
+            display: flex;
+            margin: 10px;
+            padding: 2;
+        }
+    </style>
+
+    <script>
+        function showFacility() {
+            const selectedFacility = document.getElementById("facilitySelect").value;
+            const facilities = ["english", "englishConversation", "mathematics", "chinese", "joinSpace", "menGroup", "planting", "joyfulStream"];
+
+            // Hide all images
+            facilities.forEach(facility => {
+                document.getElementById(facility + "Image").style.display = "none";
+            });
+
+            // Show the selected facility image
+            if (selectedFacility) {
+                document.getElementById(selectedFacility + "Image").style.display = "block";
+            }
+        }
+
+        function hideAllFacilities() {
+            const facilities = ["english", "englishConversation", "mathematics", "chinese", "joinSpace", "menGroup", "planting", "joyfulStream"];
+            facilities.forEach(facility => {
+                document.getElementById(facility + "Image").style.display = "none";
+            });
+            document.getElementById("facilitySelect").value = ""; // Reset selection
+        }
+    </script>
+
+    {% comment %} <script>
+        function showFacility() {
+            const selectedFacility = document.getElementById("facilitySelect").value;
+            const facilities = ["english", "englishConversation", "mathematics", "chinese", "joinSpace", "menGroup", "planting", "joyfulStream_"];
+
+            // Hide all images
+            facilities.forEach(facility => {
+                document.getElementById(facility + "Image").style.display = "none";
+            });
+
+            // Show the selected facility image
+            if (selectedFacility) {
+                document.getElementById(selectedFacility + "Image").style.display = "block";
+            }
+        }
+
+        function hideAllFacilities() {
+            const facilities = ["english", "englishConversation", "mathematics", "chinese", "joinSpace", "menGroup", "planting", "joyfulStream"];
+            facilities.forEach(facility => {
+                document.getElementById(facility + "Image").style.display = "none";
+            });
+            document.getElementById("facilitySelect").value = ""; // Reset selection
+        }
+    </script> {% endcomment %}
+</head>
+
+<body style="background-color:powderblue;">
+
+    <div class="container mt-5">
+        <h2>富安浸信會禧年堂--喜樂川</h2>
+        
+        <div class="form-group">
+            <label for="facilitySelect">請選擇服務:</label>
+            <select id="facilitySelect" class="form-control" onchange="showFacility()">
+                <option value="">選擇設施</option>
+                <option value="english">補習英文理解和文法</option>
+                <option value="englishConversation">英文會話</option>
+                <option value="mathematics">補習數學</option>
+                <option value="chinese">補習中文</option>
+                <option value="studentLunch">空闖</option>
+                <option value="joinSpace">共享空闖</option>
+                <option value="menGroup">成人男子組別</option>
+                <option value="planting">園藝組</option>
+                <option value="joyfulStream"></option>
+            </select>
+        </div>
+
+        <!-- Facility Images -->
+        <div id="englishImage" class="facility-image">
+            <img src={% static 'admin/english.jpeg' %} alt="english" class="img-fluid">
+            <p>請盡情享受補習英文的趣味。</p>
+            <div class="return-button">
+                <button class="btn btn-secondary" onclick="hideAllFacilities()">Return</button>
+            </div>
+        </div>
+
+        <div id="englishConversationImage" class="facility-image">
+            <img src={% static 'admin/img/englishConversation.jpeg' %}  alt="English Conversation" class="img-fluid">
+            <p>請盡情享受補習英文會話的趣味。</p>
+            <div class="return-button">
+                <button class="btn btn-secondary" onclick="hideAllFacilities()">Return</button>
+            </div>
+        </div>
+        <div id="mathematicsImage" class="facility-image">
+            img src={% static 'admin/img/mathematics.jpeg' %} alt="Mathematics" class="img-fluid">
+            <p>請盡情享受補習數學的趣味。</p>
+            <div class="return-button">
+                <button class="btn btn-secondary" onclick="hideAllFacilities()">Return</button>
+            </div>
+        </div>  
+        <div id="chineseImage" class="facility-image">
+            <img src={% static 'admin/img/chinese.jpeg' %}  alt="Chinese" class="img-fluid">
+            <p>請盡情享受補習中文的趣味。</p>
+            <div class="return-button">
+                <button class="btn btn-secondary" onclick="hideAllFacilities()">Return</button>
+            </div>
+        </div>  
+
+        div id="studentLunchImage" class="facility-image">
+            <img src={% static 'admin/img/studentlunch.jpeg' %} alt="Student Lunch" class="img-fluid">
+            <p>請盡情享受喜樂川的設施。</p>
+            <div class="return-button">
+                <button class="btn btn-secondary" onclick="hideAllFacilities()">Return</button>
+            </div>
+        </div>
+        
+        <div id="joinSpaceImage" class="facility-image">
+            <img src={% static 'admin/img/joinspace.jpeg' %} alt="Join Space" class="img-fluid">
+            <p>請盡情享受喜樂川的設施。</p>
+            <div class="return-button">
+                <button class="btn btn-secondary" onclick="hideAllFacilities()">Return</button>
+            </div>
+        </div>
+        
+        <div id="menGroupImage" class="facility-image">
+            <p>成人男子組別。</p>
+            <img src={% static 'admin/img/mengroup.jpeg' %} alt="Men Group" class="img-fluid">
+            <img src={% static ''%} alt="Sauna 2" class="img-fluid">
+            <div class="return-button">
+                <button class="btn btn-secondary" onclick="hideAllFacilities()">Return</button>
+            </div>
+        </div>
+        
+        <div id="PlantingImage" class="facility-image">
+            <p>請用感覺去感受喜樂川的園藝組。</p>
+            <img src={% static 'admin/img/planting.jpeg' %} alt="Planting" class="img-fluid">
+            <img src={% static '' %} alt="Spa 2" class="img-fluid">
+            <img src={% static '' %} alt="Spa 3" class="img-fluid">
+            <div class="return-button">
+                <button class="btn btn-secondary" onclick="hideAllFacilities()">Return</button>
+            </div>
+        </div>
+
+        <!-- <div id="gymRoomImage" class="facility-image">
+            <p>請盡清享受當值的樂趣。</p>
+            <img src={% static 'admin/img/lookupRoster1.jpeg' %} alt="Gym 1" class="img-fluid">
+            <img src={% static 'admin/img/lookupRoster2.jpeg' %} alt="Gym 2" class="img-fluid">
+            <img src={% static 'admin/img/lookupRoster3.jpeg' %} alt="Gym 3" class="img-fluid">
+            <div class="return-button">
+                <button class="btn btn-secondary" onclick="hideAllFacilities()">Return</button>
+            </div>
+        </div> -->
+        <!-- <div id="conferenceRoomImage" class="facility-image">
+            <p>Photo is unavailable</p>
+            <img src={% static 'admin/img/meet_room1.jpeg' %} alt="Conference Room 1" class="img-fluid">
+            <div class="return-button">
+                <button class="btn btn-secondary" onclick="hideAllFacilities()">Return</button>
+            </div>
+        </div>
+
+        <div id="restaurantImage" class="facility-image">
+            <p>Photo is unavailable</p>
+            <img src={% static 'admin/img/rest1.jpeg' %} alt="Rest 1" class="img-fluid">
+            <img src={% static 'admin/img/rest2.jpeg' %} alt="Rest 2" class="img-fluid">
+            <img src={% static 'admin/img/rest3.jpeg' %} alt="Rest 3" class="img-fluid">
+            <div class="return-button">
+                <button class="btn btn-secondary" onclick="hideAllFacilities()">Return</button>
+            </div>
+        </div>
+
+        <div id="pubImage" class="facility-image">
+            <p>Photo is unavailable</p>
+            <img src={% static 'admin/img/pub1.jpeg' %} alt="Pub 1" class="img-fluid">
+            <div class="return-button">
+                <button class="btn btn-secondary" onclick="hideAllFacilities()">Return</button>
+            </div>
+        </div> -->
+    </div>
+{% include "_footer.html" %}
+</body>
+</html>

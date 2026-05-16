@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block header %}
+<h1 class="text-center">富安浸信會禧年堂</h1> {% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>富安浸信會禧年堂 - 首頁</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .carousel-item img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .loan-item {
+            color: blue; /* Set text color for loan items */
+        }
+
+        h2 {
+            color: red; /* Set text color for headings */
+            font-size: 32px; /* Set font size for headings */
+        }
+        p {
+            color: blue;
+            font-size: 28px;
+        }
+        p1 {
+            color: red;
+            font-size: 24px;
+        }
+        p2 {
+            color: green;
+            font-size: 28px;
+        }
+    </style>
+    
+        <h2 class="mt-5">請聯絡我們</h2>
+        <p>如需要幫助 ， 您可撥打我們之電話 : +852-2642 1039</p>
+        <p1>Or visit our <a style="color: red; font-size: 28px;" href="https://www.fuonc.org">綱站</a> 欲想知多些資訊.</p1>
+        <p2>跟隨我們上社會媒體 ， 如下:</p2>
+        <ul>
+            <li><a style="color: blue; font-size: 28px;" href="https://www.facebook.com/fuonc.org">Facebook</a></li>
+            <li><a style="color: blue; font-size: 28px;" href="https://www.instagram.com/fuonc.org">Instagram</a></li>
+            <li><a style="color: blue; font-size: 28px;" href="https://www.twitter.com/fuonc.org">Twitter</a></li>
+            <li><a style="color: blue; font-size: 28px;" href="https://www.linkedin.com/company/fuonc.org">LinkedIn</a></li>
+        </ul>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    {% include '_footer.html'%}
+    </body>
+</head>
+</html>
+{% endblock %}
+
+           

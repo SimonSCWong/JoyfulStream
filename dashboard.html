@@ -1,0 +1,59 @@
+<!-- dashboard.html -->
+{% extends 'base.html' %} 
+{% load humanize %} 
+
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {background-image:url();}
+        .room-image {
+            max-height: 200px;
+            margin-bottom: 10px;
+        }
+
+        .room-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px; /* Space between room sections */
+        }
+
+        .room-info {
+            margin-left: 20px; /* Space between image and form */
+        }
+    </style>
+    <style>
+      .container1 {background-color:powderblue}
+    </style>
+</head>
+<section id="team" class="py-5">
+    <div class="container1">
+      <h2 class="text-center">Payment Details</h2>
+      <div class="row text-left">
+        {% for payment in payments %}
+        <div class="col-md-4">
+          <h4>姓名 : {{ payment.fullName }}</h4>
+          <h4>電郵 : {{ payment.email }}</h4>
+          {% if payment.roomType == 'singleRoom' %}
+          <h4>補英文 ( 會話 + 拼音應用 + 提升語文應用 )</h4>
+          {% elif payment.roomType == 'doubleRoom' %}
+          <h4>小學補數學</h4>
+          {% elif payment.roomType == 'twinRoom' %}
+          <h4>補小學中文</h4>
+          {% elif payment.roomType == 'kingRoom' %}
+          <h4>小一英文功課輔導及温習班</h4>
+          {% endif %}
+          <h4>有多少個學生 : {{ payment.numberOfRooms }}</h4>
+          <h4>那個日期開始補習 : {{ payment.checkInDate }}</h4>
+          <h4>那個日期完結 : {{ payment.checkOutDate }}</h4>
+          <h4>補習總數 : {{ payment.totalPrice | intcomma }}</h4>
+          <hr/>
+        </div>
+        {% endfor %} 
+      </div>
+    </div>
+  </section>  
+            {% endblock %}              

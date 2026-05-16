@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amenities Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h2>Amenities Selection Form</h2>
+        <form>
+            <div class="form-group">
+                <label for="amenitySelect">Select Amenities:</label>
+                <select id="amenitySelect" class="form-control">
+                    <option value="">Select an Amenity</option>
+                    <option value="smartTV">Smart TV</option>
+                    <option value="fridge">Fridge</option>
+                    <option value="miniBar">Mini Bar</option>
+                    <option value="airPurifier">Air Purifier</option>
+                    <option value="hairDryer">Hair Dryer</option>
+                    <option value="miniTable">Mini Table</option>
+                    <option value="indoorPhone">Indoor Phone</option>
+                    <option value="slippers">Slippers</option>
+                    <option value="hangers">Hangers</option>
+                </select>
+            </div>
+            <div>
+                <button type="button" class="btn btn-success" onclick="window.location.href={% url 'amenity' %}">View Amenities Details</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

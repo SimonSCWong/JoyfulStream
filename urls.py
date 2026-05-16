@@ -1,24 +1,51 @@
-"""
-URL configuration for fuonweb project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-from django.contrib import admin
-from django.urls import path, include
+# hotels/urls.py
+from django.urls import path
+from . import views
+from .views import (
+    register,
+    login_view,
+    logout_view,
+    booking_form,
+    about,
+    home,
+    facility,
+    amenity,
+    loan,
+    payment_form,
+    paytutorials,
+    paytutorial_wh_new,
+    admin,
+    login,
+    logout,
+    amenity_view,
+    
+)
+from .views import happyvally
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('fuonchurchs', include('fuonchurchs.urls')),  # Include the URLs from the hotels app
-    path('', include('fuonchurchs.urls')),            # Optional: Redirect empty path to hotels
+    path('', home, name='home'),  # Home page
+    path('about/', about, name='about'),  # About page
+    path('admin/', admin, name='admin'),
+    path('register/', register, name='register'),  # Registration page
+    path('login/', login_view, name='login'),  # Login page
+    path('logout/', logout_view, name='logout'),  # Logout page
+    path('booking_form/', booking_form, name='booking_form'),  # Booking form page
+    path('facility/', facility, name='facility'),  # Facility page
+    path('amenity/', amenity, name='amenity'),  # Amenity page
+    path('loan/', loan, name='loan'),  # Loam Item page
+    path('payment_form/', payment_form, name='payment_form'),  # Payment form page
+    path('api/loan/', loan, name='loan'),  # Loan API endpoint
+    path('amenity/path_to_previous_page/', loan, name='path_to_previous_page'),  # Path to previous form page
+    path('paytutorials/', paytutorials, name='paytutorials'),  # Payment tutorials page
+    path('paytutorial_wh_new/', paytutorial_wh_new, name='paytutorial_wh_new'),  # New payment tutorial page
+    path('register', register, name='register'),
+    path('login', login, name='login'),
+    path('logout/', logout, name='logout'),
+    path('happyvally/', views.happyvally, name='happyvally'),
+    path('amenity/', amenity_view, name='amenity'),
 ]
+
+from django.contrib import admin
+admin.autodiscover()
+
+

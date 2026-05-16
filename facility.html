@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "_navbar.html" %}
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>富安浸信會禧年堂--喜樂川</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        .facilities {
+            margin: 20px;
+        }
+        button {
+            padding: 10px 15px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        .image-container {
+            display: none;
+            margin: 20px;
+        }
+        .image-container img {
+            width: 80%;
+            max-width: 600px;
+            display: block;
+            margin: 0 auto;
+        }
+        .arrow {
+            cursor: pointer;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>請選擇服務:</h1>
+    <div class="facilities">
+      <button onclick="showImage('joyfulStreamSummerActive')" style="background-color: #4CAF50; color: white; font-size:25px">喜樂川暑期活動</button>
+      <button onclick="showImage('anotherSummerActive')" style="background-color: #4CAF50; color: white; font-size:25px">另類暑期活動</button>
+      <button onclick="showImage('primaryTutoring')" style="background-color: #4CAF50; color: white; font-size:25px">小學補習</button>
+        <button onclick="showImage('englishTutoring')" style="background-color: #4CAF50; color: white; font-size:25px">補習英文理解和文法</button>
+        <button onclick="showImage('englishConversation')" style="background-color: #4CAF50; color: white; font-size:25px">英文會話</button>
+        <button onclick="showImage('mathTutoring')" style="background-color: #4CAF50; color: white; font-size:25px">補習數學</button>
+        <button onclick="showImage('chineseTutoring')" style="background-color: #4CAF50; color: white; font-size:25px">補習中文</button>
+        <button onclick="showImage('studentLunch')" style="background-color: #4CAF50; color: white; font-size:25px">學生天地</button>
+        <button onclick="showImage('sharedSpace')" style="background-color: #4CAF50; color: white; font-size:25px">共享空闖</button>
+        <button onclick="showImage('adultMales')" style="background-color: #4CAF50; color: white; font-size:25px">成人男子組別</button>
+        <button onclick="showImage('gardening')" style="background-color: #4CAF50; color: white; font-size:25px">園藝組</button>
+    </div>
+
+    <div id="imageContainer" class="image-container">
+        <span class="arrow" id="prev" onclick="changeImage(-1)">&#10094;</span>
+        <img id="facilityImage" src="" alt="Facility Image">
+        <span class="arrow" id="next" onclick="changeImage(1)">&#10095;</span>
+        <br>
+        <button onclick="backToFacilities()" style="background-color: #4CAF50; color: white; font-size:25px">返回喜樂川之服務</button>
+    </div>
+
+<script>
+  let currentIndex = 0;
+  let currentFacility = '';
+  
+  const images = {
+    primaryTutoring: ["{% static 'admin/img/studying.jpg' %}"],
+    englishTutoring: ["{% static 'admin/img/english_tutoring.jpeg' %}"],
+    englishConversation: ["{% static 'admin/img/english_conversation.jpeg' %}"],
+    mathTutoring: ["{% static 'admin/img/math_tutoring.jpeg' %}"],
+    chineseTutoring: ["{% static 'admin/img/chinese_tutoring.jpeg' %}"],
+
+   joyfulStreamSummerActive: [
+      "{% static 'admin/img/joyfulstreamsummeractive.jpg' %}",
+    ],
+
+    anotherSummerActive: [
+      "{% static 'admin/img/anothersummeractive.jpg' %}",
+    ],
+
+
+    studentLunch: [
+      "{% static 'admin/img/studentlunch.jpg' %}",
+    ],
+
+    sharedSpace: [
+      "{% static 'admin/img/sharedspace.jpg' %}"
+    ],
+
+    adultMales: [
+      "{% static 'admin/img/adultmales.jpg' %}"
+    ],
+
+    gardening: [
+      "{% static 'admin/img/gardening.jpg' %}"
+    ]
+  };
+
+  function showImage(facility) {
+    currentFacility = facility;
+    currentIndex = 0;
+
+    document.getElementById("imageContainer").style.display = "block";
+    updateImage();
+  }
+
+  function updateImage() {
+    const facilityImages = images[currentFacility] || [];
+    const imgElement = document.getElementById("facilityImage");
+
+    if (facilityImages.length > 0) {
+      imgElement.src = facilityImages[currentIndex];
+      imgElement.style.display = "block";
+    } else {
+      imgElement.src = '';
+      imgElement.style.display = "none"; // hide image if no images (Jacuzzi)
+    }
+  }
+
+  function changeImage(direction) {
+    const facilityImages = images[currentFacility] || [];
+    if (facilityImages.length === 0) return; // Jacuzzi: do nothing
+
+    if (direction === -1) currentIndex--;
+    else if (direction === 1) currentIndex++;
+
+    if (currentIndex < 0) currentIndex = facilityImages.length - 1;
+    if (currentIndex >= facilityImages.length) currentIndex = 0;
+
+    updateImage();
+  }
+
+  function backToFacilities() {
+    document.getElementById("imageContainer").style.display = "none";
+    document.getElementById("facilityImage").src = '';
+  }
+</script>
+
+</body>
+</html>

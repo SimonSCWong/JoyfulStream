@@ -1,0 +1,90 @@
+
+<!-- about.html -->
+{% extends "base.html" %}
+{% include "templates/_navbar.html" %}
+
+{% block content %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- <title>Booking Form</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+        <style>
+            /* body {background-image:url();} */
+            a {
+               font-size: 19px; /* Font size for links */
+               display: flex;
+               margin-left: 2px;
+               margin-right: 2px;
+               color: greenyellow;
+            }
+            h2 {
+                font-size: 180%;
+                color: blue;
+            }
+
+            p {
+                font-size: 120%;
+                color: darkblue; 
+            }
+            .room-image {
+                max-height: 10px;
+                margin-bottom: 10px;
+            }
+    
+            .room-container {
+                display: flex;
+                align-items: center;
+                margin-bottom: 20px; /* Space between room sections */
+            }
+    
+            .room-info {
+                margin-left: 20px; /* Space between image and form */
+            }
+        </style>
+    </head>
+<body style="background-color:powderblue;">
+    <div>
+    <div class="container"></div>
+        <h2>關於我們:</h2>
+        <ul class="list-group mb-8"> 
+            <li class="list-group-item">
+            本教會前身為九龍城浸信會禧年小學禮拜堂，於一九八九年二月二十六日開始在</li>
+            <li class="list-group-item">
+            禧年小學禮堂舉行第一次主日崇拜。本會鼓勵會友委身遵行主耶穌的大使命，特</li>
+            <li class="list-group-item">
+            別以將福音傳遍富安花園、大水坑村及馬鞍山地區為目標，同時亦積極協助禧年</li>
+            <li class="list-group-item">
+            小學學生福音工作。</li>
+        </ul>
+
+        <h2>我們的使命:</h2>
+        <ul class="list-group mb-8">
+            <li class="list-group-item">
+            提升弟兄姊妹關心社區的意識，並了解及認識探訪的意義和行動，</li>
+            <li class="list-group-item">
+            並鼓勵其委身參與教會各項服事，裝備更多有心志服侍社區的信徙 。</li>
+            <li class="list-group-item">
+            將神的事蹟和話語傳揚閍去 ， 以及聖經內之神所默示的金句傳揚閜去</li>
+            <li class="list-group-item">
+            甚至到地極 ，願神的臉光照耀每一個人 ， 賜福給他們 !</li>
+        </ul>
+         
+        <h2>教會所提供的服務:</h2>
+        <ul class="list-group mb-8">
+            <li class="list-group-item">1. 每年聖誕節, 往沙田醫院向有病的病者(尤其是長者)報佳音</li>
+            <li class="list-group-item">也在富安花園報佳音。</li>
+            <li class="list-group-item">2. 每星期日之崇拜於上午10時正左九龍城浸信會禧年小學敬拜神。</li>
+            <li class="list-group-item">3. 提供和安排聖經課堂(詳情請參閱首頁之「教會課程亅)</li>
+            <li class="list-group-item">幫富安花園之小學生補習, 包括有: 英文, 數學和中文；在未來將來亦可能會補其他科目, 視乎家長需求。</li>
+            <li class="list-group-item">4. 上鬥探訪有需之長者, 或有病臥床之有需要之人士。</li>
+            <li class="list-group-item">5. 為有需之長者, 或有病之人士, 或在職人士和學生祈求禱告。</li>
+        </ul>
+    </div>
+    </div>
+    <!-- <div class="collapse navbar-collapse" id="navbarNav"> -->
+        <a href="{% url 'paytutorials' %}" class="btn btn-primary ml-3">留位補習</a>
+    <!-- </div> -->
+</body>
+{% include "_footer.html" %}
+{% endblock %}

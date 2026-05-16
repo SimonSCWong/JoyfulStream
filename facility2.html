@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include '_navbar.html' %}
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facilities Types</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .amenity-image {
+            max-height: 300px; /* Limit the height of images */
+            width: auto; /* Maintain aspect ratio */
+            display: none; /* Initially hide all images */
+            margin-top: 20px; /* Space above images */
+        }
+
+        .return-button {
+            margin-top: 20px; /* Space above the return button */
+        }
+    </style>
+    <script>
+        function showAmenity() {
+            const selectedAmenity = document.getElementById("amenitySelect").value;
+            const amenities = ["swimPool", "jacuzzi", "sauna", "spa", "gymRoom", "restaurants", "pub", "meetRoom"];
+
+            // Hide all images
+            amenities.forEach(amenity => {
+                document.getElementById(amenity + "Image").style.display = "none";
+            });
+
+            // Show the selected facility image
+            if (selectedAmenity) {
+                document.getElementById(selectedAmenity + "Image").style.display = "block";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h2>Select Facilities Types</h2>
+        
+        <div class="form-group">
+            <label for="amenitySelect">Choose an Facility:</label>
+            <select id="amenitySelect" class="form-control" onchange="showAmenity()">
+                <option value="">Select an Facility</option>
+                <option value="swimPool">Infinity Swimming Pool</option>
+                <option value="jacuzzi">Jacuzzi</option>
+                <option value="sauna">Sauna</option>
+                <option value="spa">Spa</option>
+                <option value="gymRoom">Gym Room</option>
+                <option value="restaurants">Restaurants</option>
+                <option value="pub">Pub</option>
+                <option value="meetRoom">Meeting Room</option>
+            </select>
+        </div>
+
+        <!-- Facility Images -->
+        <div id="swimPoolImage" class="amenity-image">
+            <img src={% static 'admin/img/swimpool1.jpeg' %} alt="Infinity Swimming Pool" class="img-fluid">
+            <img src={% static 'admin/img/swimpool2.jpeg' %} alt="Infinity Swimming Pool" class="img-fluid">
+            <p>Enjoy your entertainment like never before.</p>
+        </div>
+        <div id="jacuzziImage" class="amenity-image">
+            <img src={% static 'admin/img/jacuzzi1.jpeg' %} alt="Jacuzzi" class="img-fluid">
+            <p>Keeps your muzzle relax.</p>
+        </div>
+        <div id="saunaImage" class="amenity-image">
+            <img src={% static 'admin/img/sauna1.jpeg' %} alt="Sauna" class="img-fluid">
+            <img src={% static 'admin/img/sauna2.jpeg' %} alt="Sauna" class="img-fluid">
+            <p>Enjoy a selection of Sauna to relax.</p>
+        </div>
+        <div id="spaImage" class="amenity-image">
+            <img src={% static 'admin/img/spa1.jpeg' %} alt="Spa" class="img-fluid">
+            <img src={% static 'admin/img/spa2.jpeg' %} alt="Spa" class="img-fluid">
+            <img src={% static 'admin/img/spa3.jpeg' %} alt="Spa" class="img-fluid">
+            <p>Breathe to relax your spirit.</p>
+        </div>
+        <div id="gymRoomImage" class="amenity-image">
+            <img src={% static 'admin/img/gym1.jpeg' %} alt="Gym Room" class="img-fluid">
+            <img src={% static 'admin/img/gym2.jpeg' %} alt="Gym Room" class="img-fluid">
+            <img src={% static 'admin/img/gym3.jpeg' %} alt="Gym Room" class="img-fluid">
+            <p>Please to let your muzzle more stronger.</p>
+        </div>
+        <div id="restaurantImage" class="amenity-image">
+            <img src={% static 'admin/img/rest1.jpeg' %} alt="Restaurants" class="img-fluid">
+            <img src={% static 'admin/img/rest2.jpeg' %} alt="Restaurants" class="img-fluid">
+            <img src={% static 'admin/img/rest3.jpeg' %} alt="Gym Room" class="img-fluid">
+            <p>Hope you to enjoy your tea lunch.</p>
+        </div>
+        <div id="pubImage" class="amenity-image">
+            <img src={% static 'admin/img/pub1.jpeg' %} alt="Pub" class="img-fluid">
+            <p>Please enjoy your little drinking.</p>
+        </div>
+        <div id="meetRoomImage" class="amenity-image">
+            <img src={% static 'admin/img/meet_room1.jpeg' %} alt="Conference Room" class="img-fluid">
+            <p>Please enjoy your discussion in quiet environment.</p>
+        </div>
+
+        <div class="return-button">
+            <a href="{% url 'facility' %}" class="btn btn-primary">Return to Facilities Form</a>
+        </div>
+    </div>
+</body>
+</html>

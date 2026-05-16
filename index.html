@@ -1,0 +1,17 @@
+<!-- index.html -->
+{% extends 'base.html' %}
+
+{% block title %}Welcome to Our RSY Hotel{% endblock %}
+
+{% block content %}
+    <div class="text-center">
+        <h1 class="display-4">Welcome to Our RSY Hotel</h1>
+        <p class="lead">Experience the finest accommodations and services for a truly unforgettable stay.</p>
+        <div class="mt-4">
+            <a class="btn btn-primary me-2" href="{% url 'about' %}">About</a>
+            <a class="btn btn-primary me-2" href="{% url 'register' %}">Register</a>
+            <a class="btn btn-primary me-2" href="{% url 'login' %}">Login</a>
+            <a class="btn btn-primary" href="{% url 'booking_form' %}">Book Now</a>
+        </div>
+    </div>
+{% endblock %}

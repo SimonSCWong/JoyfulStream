@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include '_navbar.html' %}
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSY Hotel Facilities Types</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .facility-image {
+            display: none; /* Initially hide all images */
+            margin-top: 20px; /* Space above images */
+        }
+
+        .return-button {
+            margin-top: 20px; /* Space above the return button */
+        }
+
+        img {
+            max-height: 400px; /* Cap the height */
+            width: 60%; /* Full width of the parent */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 5px; /* Add rounded corners */
+        }
+    </style>
+    <script>
+        function showFacility() {
+            const selectedFacility = document.getElementById("facilitySelect").value;
+            const facilities = ["infinityPool", "jacuzzi", "sauna", "spa", "gymRoom", "conferenceRoom", "restaurant", "pub"];
+
+            // Hide all images
+            facilities.forEach(facility => {
+                document.getElementById(facility + "Image").style.display = "none";
+            });
+
+            // Show the selected facility image
+            if (selectedFacility) {
+                document.getElementById(selectedFacility + "Image").style.display = "block";
+            }
+        }
+
+        function hideAllFacilities() {
+            const facilities = ["infinityPool", "jacuzzi", "sauna", "spa", "gymRoom", "conferenceRoom", "restaurant", "pub"];
+            facilities.forEach(facility => {
+                document.getElementById(facility + "Image").style.display = "none";
+            });
+            document.getElementById("facilitySelect").value = ""; // Reset selection
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h2>RSY Hotel Facilities Types</h2>
+        
+        <div class="form-group">
+            <label for="facilitySelect">Choose a Facility:</label>
+            <select id="facilitySelect" class="form-control" onchange="showFacility()">
+                <option value="">Select a Facility</option>
+                <option value="infinityPool">Infinity Swimming Pool</option>
+                <option value="jacuzzi">Jacuzzi</option>
+                <option value="sauna">Sauna</option>
+                <option value="spa">Spa</option>
+                <option value="gymRoom">Gym Room</option>
+                <option value="conferenceRoom">Conference Room</option>
+                <option value="restaurant">Restaurant</option>
+                <option value="pub">Pub</option>
+            </select>
+        </div>
+
+        <!-- Facility Images -->
+        <div id="infinityPoolImage" class="facility-image">
+            <img src={% static 'img/studentlunch.png' %}  alt="Infinity Swimming Pool" class="img-fluid">
+            <img src={% static 'img/swimpool2.jpeg' %}  alt="Infinity Swimming Pool" class="img-fluid">
+            <p>Relax and enjoy our Infinity Swimming Pool.</p>
+            <div class="return-button">
+                <button class="btn btn-secondary" onclick="hideAllFacilities()">Return</button>
+            </div>
+        </div>
+        
+        <div id="jacuzziImage" class="facility-image">
+            <img src={% static 'img/jacuzzi1.jpeg' %} alt="Jacuzzi" class="img-fluid">
+            <p>Indulge in luxury with our Jacuzzi.</p>
+            <div class="return-button">
+                <button class="btn btn-secondary" onclick="hideAllFacilities()">Return</button>
+            </div>
+        </div>
+        
+        <div id="saunaImage" class="facility-image">
+            <p>Enjoy our Sauna facilities:</p>
+            <img src={% static 'img/sauna1.jpeg' %} alt="Sauna 1" class="img-fluid">
+            <img src={% static 'img/sauna2.jpeg' %} alt="Sauna 2" class="img-fluid">
+            <div class="return-button">
+                <button class="btn btn-secondary" onclick="hideAllFacilities()">Return</button>
+            </div>
+        </div>
+        
+        <div id="spaImage" class="facility-image">
+            <p>Relax and rejuvenate in our RSY Hotel</p>
+            <img src={% static 'img/spa1.jpeg' %} alt="Spa 1" class="img-fluid">
+            <img src={% static 'img/spa2.jpeg' %} alt="Spa 2" class="img-fluid">
+            <img src={% static 'img/spa3.jpeg' %} alt="Spa 3" class="img-fluid">
+            <div class="return-button">
+                <button class="btn btn-secondary" onclick="hideAllFacilities()">Return</button>
+            </div>
+        </div>
+
+        <div id="gymRoomImage" class="facility-image">
+            <p>Please train your muzzle in Our Hotel</p>
+            <img src={% static 'img/gym1.jpeg' %} alt="Gym 1" class="img-fluid">
+            <img src={% static 'img/gym2.jpeg' %} alt="Gym 2" class="img-fluid">
+            <img src={% static 'img/gym3.jpeg' %} alt="Gym 3" class="img-fluid">
+            <div class="return-button">
+                <button class="btn btn-secondary" onclick="hideAllFacilities()">Return</button>
+            </div>
+        </div>
+
+        <div id="conferenceRoomImage" class="facility-image">
+            <p>Please enjoy our best facility conference room
+            <img src={% static 'img/meet_room1.jpeg' %} alt="Conference Room 1" class="img-fluid">
+            <div class="return-button">
+                <button class="btn btn-secondary" onclick="hideAllFacilities()">Return</button>
+            </div>
+        </div>
+
+        <div id="restaurantImage" class="facility-image">
+            <p>Enjoy a best lunch in our RSY Hotel Restaurants</p>
+            <img src={% static 'img/rest1.jpeg' %} alt="Rest 1" class="img-fluid">
+            <img src={% static 'img/rest2.jpeg' %} alt="Rest 2" class="img-fluid">
+            <img src={% static 'img/rest3.jpeg' %} alt="Rest 3" class="img-fluid">
+            <div class="return-button">
+                <button class="btn btn-secondary" onclick="hideAllFacilities()">Return</button>
+            </div>
+        </div>
+
+        <div id="pubImage" class="facility-image">
+            <p>Relax and enjoy in our RSY Hotel's Pub</p>
+            <img src={% static 'img/pub1.jpeg' %} alt="Pub 1" class="img-fluid">
+            <div class="return-button">
+                <button class="btn btn-secondary" onclick="hideAllFacilities()">Return</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% include '_navbar.html' %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .room-image {
+            max-height: 200px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h2>Book Your Room</h2>
+        <form id="bookingForm" method="POST" action="{% url 'payment_form' %}"> <!-- Change the action to your booking endpoint -->
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="roomType">Room Type</label>
+                <select id="roomType" class="form-control" name="roomType" required onchange="updatePrice()">
+                    <option value="">Choose a Room</option>
+                    <option value="standard_single">Standard Single Room (Weekday: HK$1080 / Weekend: HK$1280 / Peak Season: HK$1480)</option>
+                    <option value="standard_double">Standard Double Room (Weekday: HK$1180 / Weekend: HK$1380 / Peak Season: HK$1580)</option>
+                    <option value="superior_twin">Superior Twin Room (Weekday: HK$1280 / Weekend: HK$1480 / Peak Season: HK$1680)</option>
+                    <option value="superior_king">Superior King Room (Weekday: HK$1380 / Weekend: HK$1580 / Peak Season: HK$1780)</option>
+                </select>
+            </div>
+
+            <div id="roomImages" class="mb-4">
+                <img id="singleImage" class="room-image" src="{% static 'admin/img/single1.jpeg' %}" alt="Standard Single Room" style="display:none;" />
+                <img id="doubleImage1" class="room-image" src="{% static 'admin/img/double1.jpeg' %}" alt="Standard Double Room" style="display:none;" />
+                <img id="doubleImage2" class="room-image" src="{% static 'admin/img/double2.jpeg' %}" alt="Standard Double Room" style="display:none;" />
+                <img id="twinImage1" class="room-image" src="{% static 'admin/img/supertwin1.jpeg' %}" alt="Superior Twin Room" style="display:none;" />
+                <img id="twinImage2" class="room-image" src="{% static 'admin/img/supertwin2.jpeg' %}" alt="Superior Twin Room" style="display:none;" />
+                <img id="kingImage1" class="room-image" src="{% static 'admin/img/superking1.jpeg' %}" alt="Superior King Room" style="display:none;" />
+                <img id="kingImage2" class="room-image" src="{% static 'admin/img/superking2.jpeg' %}" alt="Superior King Room" style="display:none;" />
+            </div>
+
+            <div class="form-group">
+                <label for="checkInDate">Check-in Date</label>
+                <input type="date" id="checkInDate" class="form-control" name="checkIn" required onchange="updatePrice()">
+            </div>
+            <div class="form-group">
+                <label for="checkOutDate">Check-out Date</label>
+                <input type="date" id="checkOutDate" class="form-control" name="checkOut" required onchange="updatePrice()">
+            </div>
+            <div class="form-group">
+                <label for="totalPrice">Total Price</label>
+                <input type="text" id="totalPrice" class="form-control" name="totalPrice" readonly>
+            </div>
+            <button type="submit" class="btn btn-primary">Proceed to Book Now</button>
+        </form>
+    </div>
+
+    <script>
+        function updatePrice() {
+            const roomType = document.getElementById('roomType').value;
+            const checkInDate = new Date(document.getElementById('checkInDate').value);
+            const checkOutDate = new Date(document.getElementById('checkOutDate').value);
+            const totalPriceField = document.getElementById('totalPrice');
+
+            // Define room pricing
+            const prices = {
+                standard_single: { weekday: 1080, weekend: 1280, peak: 1480 },
+                standard_double: { weekday: 1180, weekend: 1380, peak: 1580 },
+                superior_twin: { weekday: 1280, weekend: 1480, peak: 1680 },
+                superior_king: { weekday: 1380, weekend: 1580, peak: 1780 }
+            };
+            let totalPrice = 0;
+            if (roomType && checkInDate && checkOutDate) {
+                const days = Math.ceil((checkOutDate - checkInDate) / (1000 * 3600 * 24));
+                for (let i = 0; i < days; i++) {
+                    const currentDay = new Date(checkInDate);
+                    currentDay.setDate(checkInDate.getDate() + i);
+                    const dayOfWeek = currentDay.getDay(); // 0 (Sunday) to 6 (Saturday)
+
+                    // Determine if the current day is a weekend or weekday
+                    if (dayOfWeek === 0 || dayOfWeek === 6) { // Sunday or Saturday
+                        totalPrice += prices[roomType].weekend;
+                    } else {
+                        totalPrice += prices[roomType].weekday;
+                    }
+                }
+                totalPriceField.value = `HK$ ${totalPrice}`;
+            } else {
+                totalPriceField.value = '';
+            }
+            showRoomImages(roomType);
+        }
+        function showRoomImages(roomType) {
+            const images = {
+                standard_single: ['singleImage'],
+                standard_double: ['doubleImage1', 'doubleImage2'],
+                superior_twin: ['twinImage1', 'twinImage2'],
+                superior_king: ['kingImage1', 'kingImage2']
+            };
+
+            // Hide all images first
+            document.querySelectorAll('.room-image').forEach(img => img.style.display = 'none');
+
+            // Show the relevant images
+            if (images[roomType]) {
+                images[roomType].forEach(imgId => {
+                    document.getElementById(imgId).style.display = 'block';
+                });
+            }
+        }
+        document.getElementById('roomType').addEventListener('change', function () {
+            const roomType = this.value;
+            showRoomImages(roomType);
+        });
+        document.getElementById('checkInDate').addEventListener('change', updatePrice);
+        document.getElementById('checkOutDate').addEventListener('change', updatePrice);
+        // Initialize the form
+        document.addEventListener('DOMContentLoaded', function () {
+            const roomType = document.getElementById('roomType').value;
+            showRoomImages(roomType);
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+</body>
+</html>
+<!--                 totalPrice += weekdays[roomType].weekday; -->
+<!--                     } else { // Weekday -->
+<!--                         totalPrice += weekdays[roomType].weekend; -->
+<!--                     } -->
+<!--                 } -->
+<!--  -->
+<!--                 totalPriceField.value = `HK$ ${totalPrice}`; -->
+

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "_navbar.html" %}
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSY Hotel Booking - Facilities</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        .facilities {
+            margin: 20px;
+        }
+        button {
+            padding: 10px 15px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        .image-container {
+            display: none;
+            margin: 20px;
+        }
+        .image-container img {
+            width: 80%;
+            max-width: 600px;
+            display: block;
+            margin: 0 auto;
+        }
+        .arrow {
+            cursor: pointer;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Facilities at RSY Hotel</h1>
+    <div class="facilities">
+        <button onclick="showImage('swimmingPool')">Infinity Swimming Pool</button>
+        <button onclick="showImage('jacuzzi')">Jacuzzi</button>
+        <button onclick="showImage('sauna')">Sauna</button>
+        <button onclick="showImage('spa')">Spa</button>
+        <button onclick="showImage('gym')">Gym Room</button>
+        <button onclick="showImage('restaurant')">Restaurants</button>
+        <button onclick="showImage('pub')">Pub</button>
+        <button onclick="showImage('meetingRoom')">Meeting Room</button>
+    </div>
+
+    <div id="imageContainer" class="image-container">
+        <span class="arrow" id="prev" onclick="changeImage(-1)">&#10094;</span>
+        <img id="facilityImage" src="" alt="Facility Image">
+        <span class="arrow" id="next" onclick="changeImage(1)">&#10095;</span>
+        <br>
+        <button onclick="backToFacilities()">Back to Facilities</button>
+    </div>
+
+<script>
+        let currentIndex = 0;
+        let currentFacility = '';
+        const images = {
+        swimmingPool: ['static/admin/img/swimpool1.jpeg'],
+        jacuzzi: [], // No images for Jacuzzi
+        sauna: ['static/admin/img/sauna1.jpeg', 'static/admin/img/sauna2.jpeg'],
+        spa: ['static/admin/img/spa1.jpeg'], 'static/admin/img/spa2.jpeg', 'static/admin/img/spa3.jpeg'
+        gym: ['static/admin/img/gym1.jpeg', 'static/admin/img/gym2.jpeg', 'static/admin/img/gym3.jpeg'],
+        restaurant: ['static/admin/img/rest1.jpeg', 'static/admin/img/rest2.jpeg', 'static/admin/img/rest3.jpeg'],
+        pub: ['static/admin/img/pub1.jpeg'],
+        meetingRoom: ['static/admin/img/meet_room1.jpeg']
+    };
+        
+        function showImage(facility) {
+        currentFacility = facility; // Track the current facility
+        currentIndex = 0;  // Reset to first image
+        document.getElementById("imageContainer").style.display = "block";
+        updateImage(); // Display the first image
+    }
+        
+    function updateImage() {
+        const facilityImages = images[currentFacility];
+        const imgElement = document.getElementById("facilityImage");
+        if (facilityImages.length > 0) {
+            imgElement.src = facilityImages[currentIndex] || '';
+        } else {
+            imgElement.src = ''; // No image to display for Jacuzzi
+        }
+    }
+
+
+
+    {% comment %} function updateImage() {
+        const facilityImages = images[currentFacility];
+        document.getElementById("facilityImage").src = facilityImages[currentIndex] || '';
+    } {% endcomment %}
+
+    function changeImage(direction) {
+        const facilityImages = images[currentFacility];
+
+        if (direction === -1) {
+            currentIndex--;
+        } else if (direction === 1) {
+            currentIndex++;
+        }
+
+        if (currentIndex < 0) {
+            currentIndex = facilityImages.length - 1; // Loop to last image
+        } else if (currentIndex >= facilityImages.length) {
+            currentIndex = 0; // Loop to first image
+        }
+
+        updateImage(); // Update the displayed image
+    }
+
+    function backToFacilities() {
+        document.getElementById("imageContainer").style.display = "none";
+        document.getElementById("facilityImage").src = '';
+    }
+</script>
+
+</body>
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+{% include "_navbar.html" %}
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSY Hotel Booking - Facilities</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        .facilities {
+            margin: 20px;
+        }
+        button {
+            padding: 10px 15px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        .image-container {
+            display: none;
+            margin: 20px;
+        }
+        .image-container img {
+            width: 80%;
+            max-width: 600px;
+            display: block;
+            margin: 0 auto;
+        }
+        .arrow {
+            cursor: pointer;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Facilities at RSY Hotel</h1>
+    <div class="facilities">
+        <button onclick="showImage('swimmingPool')">Infinity Swimming Pool</button>
+        <button onclick="showImage('jacuzzi')">Jacuzzi</button>
+        <button onclick="showImage('sauna')">Sauna</button>
+        <button onclick="showImage('spa')">Spa</button>
+        <button onclick="showImage('gym')">Gym Room</button>
+        <button onclick="showImage('restaurant')">Restaurants</button>
+        <button onclick="showImage('pub')">Pub</button>
+        <button onclick="showImage('meetingRoom')">Meeting Room</button>
+    </div>
+
+    <div id="imageContainer" class="image-container">
+        <span class="arrow" id="prev" onclick="changeImage(-1)">&#10094;</span>
+        <img id="facilityImage" src="" alt="Facility Image">
+        <span class="arrow" id="next" onclick="changeImage(1)">&#10095;</span>
+        <br>
+        <button onclick="backToFacilities()">Back to Facilities</button>
+    </div>
+
+<<script>
+  let currentIndex = 0;
+  let currentFacility = '';
+  
+  const images = {
+    swimmingPool: ["{% static 'admin/img/swimpool1.jpeg' %}"],
+    jacuzzi: [], // No images for Jacuzzi
+
+    sauna: [
+      "{% static 'admin/img/sauna1.jpeg' %}",
+      "{% static 'admin/img/sauna2.jpeg' %}"
+    ],
+
+    spa: [
+      "{% static 'admin/img/spa1.jpeg' %}",
+      "{% static 'admin/img/spa2.jpeg' %}",
+      "{% static 'admin/img/spa3.jpeg' %}"
+    ],
+
+    gym: [
+      "{% static 'admin/img/gym1.jpeg' %}",
+      "{% static 'admin/img/gym2.jpeg' %}",
+      "{% static 'admin/img/gym3.jpeg' %}"
+    ],
+
+    restaurant: [
+      "{% static 'admin/img/rest1.jpeg' %}",
+      "{% static 'admin/img/rest2.jpeg' %}",
+      "{% static 'admin/img/rest3.jpeg' %}"
+    ],
+
+    pub: [
+      "{% static 'admin/img/pub1.jpeg' %}"
+    ],
+
+    meetingRoom: [
+      "{% static 'admin/img/meet_room1.jpeg' %}"
+    ]
+  };
+
+  function showImage(facility) {
+    currentFacility = facility;
+    currentIndex = 0;
+
+    document.getElementById("imageContainer").style.display = "block";
+    updateImage();
+  }
+
+  function updateImage() {
+    const facilityImages = images[currentFacility] || [];
+    const imgElement = document.getElementById("facilityImage");
+
+    if (facilityImages.length > 0) {
+      imgElement.src = facilityImages[currentIndex];
+      imgElement.style.display = "block";
+    } else {
+      imgElement.src = '';
+      imgElement.style.display = "none"; // hide image if no images (Jacuzzi)
+    }
+  }
+
+  function changeImage(direction) {
+    const facilityImages = images[currentFacility] || [];
+    if (facilityImages.length === 0) return; // Jacuzzi: do nothing
+
+    if (direction === -1) currentIndex--;
+    else if (direction === 1) currentIndex++;
+
+    if (currentIndex < 0) currentIndex = facilityImages.length - 1;
+    if (currentIndex >= facilityImages.length) currentIndex = 0;
+
+    updateImage();
+  }
+
+  function backToFacilities() {
+    document.getElementById("imageContainer").style.display = "none";
+    document.getElementById("facilityImage").src = '';
+  }
+</script>
+
+</body>
+</html>
+

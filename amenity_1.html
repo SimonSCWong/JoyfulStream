@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block title %} <h2>RSY Hotel Booking - Home</h2> {% endblock %}
+{% block header %}
+<h1 class="text-center">Welcome to RSY Hotel</h1> {% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+{% comment %} {% endblock %} {% endcomment %}
+{% include '_navbar.html' %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking - Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .carousel-item img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .loan-item {
+            color: blue; /* Set text color for loan items */
+        }
+    </style>
+    <script>
+        {% comment %} function showImages(type) {
+            const images = { {% endcomment %}
+                // In Room Equipment and Amenities
+                <div class="facility-container">
+                <div id="SmartTVImage">
+                    <img src="static/admin/img/smart_tv.jpeg" alt="SmartTV" class="amenity-image img-fluid">
+                </div>
+                </div>
+                {% comment %} "Smart TV": [
+                    'static/admin/img/smart_tv.jpeg',
+                ], {% endcomment %}
+                "Fridge": [
+                    'static/admin/img/fridge.jpeg',
+                ],
+                "Mini Bar": [
+                    'static/admin/img/mini_bar.jpeg',
+                ],
+                "Air Purifier": [
+                    'static/admin/img/air_purifier.jpeg',
+                ],
+                "Hair Dryer": [
+                    'static/admin/img/hair_dryer.jpeg',
+                ],
+                "Mini Table": [],
+                "Indoor Phone": [],
+                "Slippers": [],
+                "Hangers": []
+            };
+
+            const carouselInner = document.getElementById('carousel-inner');
+            carouselInner.innerHTML = ''; // Clear existing images
+        }
+        function resetSelection() {
+            document.getElementById('facility-select').selectedIndex = 0;
+            document.getElementById('amenity-select').selectedIndex = 0;
+            const carousel = document.getElementById('imageCarousel');
+            carousel.classList.add('hidden');
+        }
+    </script>
+</head>
+
+<body>
+    
+
+    <div class="container mt-5">
+        <h1 class="text-center">RSY Hotel Booking</h1>
+
+        <h2 class="mt-5">In Room Equipment and Amenities</h2>
+        <select id="amenity-select" class="form-control mb-4" onchange="showImages(this.value)">
+            <option value="">Select an Amenity</option>
+            <option value="SmartTV">Smart TV</option>
+            <option value="Fridge">Fridge</option>
+            <option value="Mini Bar">Mini Bar</option>
+            <option value="Air Purifier">Air Purifier</option>
+            <option value="Hair Dryer">Hair Dryer</option>
+            <option value="Mini Table">Mini Table</option>
+            <option value="Indoor Phone">Indoor Phone</option>
+            <option value="Slippers">Slippers</option>
+            <option value="Hangers">Hangers</option>
+        </select>
+        <button class="btn btn-secondary" onclick="resetSelection()">Reset Selection</button>
+        <div id="imageCarousel" class="carousel slide mt-5 hidden" data-ride="carousel">
+            <div class="carousel-inner" id="carousel-inner">
+                <!-- Images will be injected here -->
+            </div>
+            <a class="carousel-control-prev" href="#imageCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#imageCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    
+        <h2 class="mt-5">Contact Us</h2>
+        <p>If you have any questions or need assistance, please contact us at: x5050</p>
+        <p>Or visit our <a href="https://www.rsyhotel.com">website</a> for more information.</p
+            <p>Follow us on social media:</p>
+        <ul>
+            <li><a href="https://www.facebook.com/rsyhotel">Facebook</a></li>
+            <li><a href="https://www.instagram.com/rsyhotel">Instagram</a></li>
+            <li><a href="https://www.twitter.com/rsyhotel">Twitter</a></li>
+            <li><a href="https://www.linkedin.com/company/rsyhotel">LinkedIn</a></li>
+        </ul>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <scrip src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</head>
+</html>
+{% endblock %}

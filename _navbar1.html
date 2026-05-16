@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <div class="logo">
+            <img src={% static 'img/rsy.jpeg' %} alt="Logo" />
+        </div>
+        <div class="text-primary">
+            <h2 class="text-center">RSY Hotel</h2>
+            {% comment %} <a class="navbar display-flex"> href="{% url "index" %}">
+                <img src={% static 'admin/img/hotel_logo.png' %} class="logo" alt="" />
+            </a> {% endcomment %}
+        </div>
+        
+        {% comment %} </div>
+        <a class="navbar-brand" href="{% url 'home' %}">Hotel Booking</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button> {% endcomment %}
+        <style>
+            .navbar {
+                margin-top: 3px; /* Adjust margin as needed */
+                margin-bottom: 50px; /* Adjust 0margin as needed */
+                display: flex;
+                justify-content: space-between; /* To place logo on the right */
+                align-items: center; /* Vertically center items */
+                padding: 10px 20px; /* Padding for the navigation bar */
+                background-color: #ffffff; /* Background color of navbar */
+            }
+    
+            .logo img {
+                display: left;
+                height: 70px; /* Adjust height as needed */
+                width: 70px; /* Maintain aspect ratio */
+                margin-left: 2px; /* Adjust margin as needed */
+                margin-right: 20px; /* Adjust margin as needed */
+            }
+    
+            .img {
+                width: 10%; /* Responsive image */
+                height: 10%; /* Maintain aspect ratio */
+            }
+    
+            a {
+            font-size: 30px; /* Font size for links */}
+    
+            .navbar-custom {
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: shadow for the navbar */
+            }
+            h1 {
+                color: #007bff; /* Adjust color */
+                margin-top: 0px; /* Margin for spacing */
+                margin-bottom: 70px; /* Margin for spacing */
+                padding: 10px; /* Padding for the button */
+                margin-left: 70px; /* Margin for spacing */
+                margin-right: 70px; /* Margin for spacing */
+                text-align: center; /* Center the text */
+                font-size: 30px; /* Font size */
+            }
+        </style>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'facility' %}">Facilities</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'amenity' %}">Amenities</a>
+                </li>
+                {% comment %} <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">Home</a>
+                </li> {% endcomment %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'about' %}">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+            </ul>
+            <a href="{% url 'payments' %}" class="btn btn-primary ml-3">Book Now</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Optional JavaScript; choose one of the two! -->
+<script src="https://code.jquery.com/jquery-3.5.2.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</html>
