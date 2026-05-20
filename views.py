@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from .models import CustomUser
 from django.contrib.auth import logout
+from django.contrib.auth import index
 
 # from .models import Booking  # Assuming you have a Booking model defined
 # hotels/views.py
@@ -98,7 +99,7 @@ def about(request):
     return render(request, 'about.html')
 
 def index(request):
-    return render(request, "index.html')
+    return render(request, 'index.html')
 
 
 def happyvally(request):
