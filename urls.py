@@ -18,6 +18,7 @@ from .views import (
     login,
     logout,
     amenity_view,
+    index,
     
 )
 from .views import happyvally
@@ -43,6 +44,7 @@ urlpatterns = [
     path('logout/', logout, name='logout'),
     path('happyvally/', views.happyvally, name='happyvally'),
     path('amenity/', amenity_view, name='amenity'),
+    path('index/', index, name='index'),
 ]
 
 from django.contrib import admin
