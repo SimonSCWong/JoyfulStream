@@ -10,7 +10,6 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from .models import CustomUser
 from django.contrib.auth import logout
-from django.contrib.auth import index
 
 # from .models import Booking  # Assuming you have a Booking model defined
 # hotels/views.py
