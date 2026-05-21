@@ -26,7 +26,7 @@
         }
         .image-container img {
             width: 80%;
-            max-width: 600px;
+            max-width: 1200px;
             display: block;
             margin: 0 auto;
         }
@@ -53,9 +53,9 @@
         <button onclick="showImage('gardening')" style="background-color: #4CAF50; color: white; font-size:25px">園藝組</button>
     </div>
 
-    <div id="imageContainer" class="image-container">
+    <div id="imageContainer" class="image-container" style="width: 1200px; height: 2200px;">
         <span class="arrow" id="prev" onclick="changeImage(-1)">&#10094;</span>
-        <img id="facilityImage" src="" alt="Facility Image">
+        <img id="facilityImage" style="height: 2200px; width: 1200px;" src="" alt="Facility Image">
         <span class="arrow" id="next" onclick="changeImage(1)">&#10095;</span>
         <br>
         <button onclick="backToFacilities()" style="background-color: #4CAF50; color: white; font-size:25px">返回喜樂川之服務</button>
